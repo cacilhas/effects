@@ -1,6 +1,7 @@
 [author]: https://github.com/cacilhas
 [jcenter]: https://bintray.com/beta/#/kodumaro/maven/kodumaro-effects
 [license]: https://github.com/cacilhas/effects/blob/master/COPYING
+[packages]: https://github.com/features/packages
 
 # Kodumaro Effects
 
@@ -13,9 +14,13 @@ Kodumaro Effects is hosted by [JCenter][jcenter].
 Add to your `build.sbt`:
 
 ```sbt
-resolvers += Resolver.bintrayRepo("kodumaro", "maven")
+resolvers += "Kodumaro Maven Repository" at "https://raw.github.com/cacilhas/maven/master"
 libraryDependencies += "info.cacilhas.kodumaro" %% "kodumaro-effects" % "1.0.0"
 ```
+
+### TODO
+
+- Publish to [Github Packages][packages].
 
 ## I/O monad
 
