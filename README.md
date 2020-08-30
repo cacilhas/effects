@@ -1,9 +1,21 @@
 [author]: https://github.com/cacilhas
+[jcenter]: https://bintray.com/beta/#/kodumaro/maven/kodumaro-effects
 [license]: https://github.com/cacilhas/effects/blob/master/COPYING
 
 # Kodumaro Effects
 
 An dependency-free side-effect functional module.
+
+## Installation
+
+Kodumaro Effects is hosted by [JCenter][jcenter].
+
+Add to your `build.sbt`:
+
+```sbt
+resolvers += Resolver.jcenterRepo
+libraryDependencies += "info.cacilhas.kodumaro" %% "kodumaro-effects" % "1.0.0"
+```
 
 ## I/O monad
 
