@@ -2,6 +2,11 @@ addCompilerPlugin("org.typelevel" %% "kind-projector" % "0.11.0" cross CrossVers
 
 name := "Kodumaro Effects"
 organization := "info.cacilhas.kodumaro"
+githubOwner := "cacilhas"
+githubRepository := "effects"
+githubTokenSource := TokenSource.GitConfig("github.token")
+publishMavenStyle := true
+
 version := "1.0.0"
 javacOptions ++= Seq("-target", "1.8", "-Xlint")
 scalaVersion := "2.12.12"
