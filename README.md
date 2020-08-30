@@ -34,9 +34,11 @@ The I/O monad is a wrapper around side-effect blocks that performs them lazily.
 ```scala
 import info.cacilhas.kodumaro.effect._
 
-val hello: IO[Unit] = println("Hello, World!")
+object Main extends App {
 
-for (_ ← 1 to 5) hello.perform
+  val hello: IO[Unit] = println("Hello, World!")
+  for (_ ← 1 to 5) hello.perform
+}
 ```
 
 A monad returning a value:
