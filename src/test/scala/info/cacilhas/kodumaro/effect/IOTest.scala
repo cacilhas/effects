@@ -10,7 +10,7 @@ class IOTest extends Specification {
 
       "Unit I/O" >> {
         val sideEffect = new MutableIntWrapper(0)
-        val io = IO {sideEffect.value += 1}
+        val io: IO[Unit] = sideEffect.value += 1
 
         "it should perform side effect" >> {
           sideEffect.value must beEqualTo(0)
@@ -23,7 +23,7 @@ class IOTest extends Specification {
 
       "Valued I/O" >> {
         val counter = new Counter
-        val io = IO {counter()}
+        val io: IO[Int] = counter()
 
         "it should update counter" >> {
           var buf: Int = io
@@ -37,7 +37,7 @@ class IOTest extends Specification {
     }
 
     "map" >> {
-      val io = IO {12}
+      val io: IO[Int] = 12
       val buf: String = io map {_.toString}
 
       "it should map to string" >> {
@@ -47,7 +47,7 @@ class IOTest extends Specification {
 
     "foreach" >> {
       val sideEffect = new MutableIntWrapper(0)
-      val io = IO {sideEffect}
+      val io: IO[MutableIntWrapper] = sideEffect
 
       "it should apply the lambda" >> {
         sideEffect.value must beEqualTo(0)

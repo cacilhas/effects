@@ -12,13 +12,13 @@ Add to your `build.sbt`:
 
 ```sbt
 resolvers += "Kodumaro Maven Repository" at "https://raw.github.com/cacilhas/maven/master"
-libraryDependencies += "info.cacilhas.kodumaro" %% "kodumaro-effects" % "1.0.0"
+libraryDependencies += "info.cacilhas.kodumaro" %% "kodumaro-effects" % "1.0.1"
 ```
 
 Or using Git itself:
 
 ```sbt
-lazy val kodumaroEffects = RootProject(uri("https://github.com/cacilhas/effects.git#release/1.0.0"))
+lazy val kodumaroEffects = RootProject(uri("https://github.com/cacilhas/effects.git#release/1.0.1"))
 dependsOn(kodumaroEffects)
 ```
 
@@ -34,7 +34,7 @@ The I/O monad is a wrapper around side-effect blocks that performs them lazily.
 ```scala
 import info.cacilhas.kodumaro.effect._
 
-val hello = IO {println("Hello, World!")}
+val hello: IO[Unit] = println("Hello, World!")
 
 for (_ ← 1 to 5) hello.perform
 ```
@@ -42,7 +42,7 @@ for (_ ← 1 to 5) hello.perform
 A monad returning a value:
 
 ```scala
-val process = IO[Either[Exception, Boolean]] {
+val process: IO[Either[Exception, Boolean]] = {
   try {
     // Do some side-effect procedure
     Right(true)
