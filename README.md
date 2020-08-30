@@ -1,15 +1,12 @@
 [author]: https://github.com/cacilhas
-[jcenter]: https://bintray.com/beta/#/kodumaro/maven/kodumaro-effects
 [license]: https://github.com/cacilhas/effects/blob/master/COPYING
 [packages]: https://github.com/cacilhas/maven/packages
 
 # Kodumaro Effects
 
-An dependency-free side-effect functional module.
+A **dependency-free** side-effect lazy dealer.
 
 ## Installation
-
-Kodumaro Effects is hosted by [JCenter][jcenter].
 
 Add to your `build.sbt`:
 
@@ -21,7 +18,7 @@ libraryDependencies += "info.cacilhas.kodumaro" %% "kodumaro-effects" % "1.0.0"
 Or using Git itself:
 
 ```sbt
-lazy val kodumaroEffects = RootProject(uri("https://github.com/cacilhas/effects.git#master"))
+lazy val kodumaroEffects = RootProject(uri("https://github.com/cacilhas/effects.git#release/1.0.0"))
 dependsOn(kodumaroEffects)
 ```
 
@@ -32,7 +29,7 @@ dependsOn(kodumaroEffects)
 
 ## I/O monad
 
-The I/O monad is a wrapper around side-effect blocks.
+The I/O monad is a wrapper around side-effect blocks that performs them lazily.
 
 ```scala
 import info.cacilhas.kodumaro.effect._
