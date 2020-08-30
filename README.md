@@ -13,7 +13,7 @@ Kodumaro Effects is hosted by [JCenter][jcenter].
 Add to your `build.sbt`:
 
 ```sbt
-resolvers += Resolver.jcenterRepo
+resolvers += Resolver.bintrayRepo("kodumaro", "maven")
 libraryDependencies += "info.cacilhas.kodumaro" %% "kodumaro-effects" % "1.0.0"
 ```
 
