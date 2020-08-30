@@ -15,6 +15,9 @@ Test / fork := true
 Test / envVars ++= Map(
   "TEST" → "1",
 )
+bintrayOrganization := Some("kodumaro")
+resolvers += Resolver.jcenterRepo
+licenses += ("BSD 3-Clause", url("https://opensource.org/licenses/BSD-3-Clause"))
 libraryDependencies ++= Seq(
   "org.specs2" %% "specs2-core" % "4.10.0" % Test,
 )
