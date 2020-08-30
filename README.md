@@ -1,7 +1,7 @@
 [author]: https://github.com/cacilhas
 [jcenter]: https://bintray.com/beta/#/kodumaro/maven/kodumaro-effects
 [license]: https://github.com/cacilhas/effects/blob/master/COPYING
-[packages]: https://github.com/features/packages
+[packages]: https://github.com/cacilhas/maven/packages
 
 # Kodumaro Effects
 
@@ -18,9 +18,17 @@ resolvers += "Kodumaro Maven Repository" at "https://raw.github.com/cacilhas/mav
 libraryDependencies += "info.cacilhas.kodumaro" %% "kodumaro-effects" % "1.0.0"
 ```
 
+Or using Git itself:
+
+```sbt
+lazy val kodumaroEffects = RootProject(uri("https://github.com/cacilhas/effects.git#master"))
+dependsOn(kodumaroEffects)
+```
+
 ### TODO
 
-- Publish to [Github Packages][packages].
+- Publish to [Github Packages][packages] (waiting for Github Packages to
+  support unauthenticated access).
 
 ## I/O monad
 
