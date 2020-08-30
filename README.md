@@ -8,14 +8,14 @@ A **dependency-free** side-effect lazy dealer.
 
 ## Installation
 
-Add to your `build.sbt`:
+Add to your `build.sbt` (only Scala 2.12):
 
 ```sbt
-resolvers += "Kodumaro Maven Repository" at "https://raw.github.com/cacilhas/maven/master"
+resolvers += "Kodumaro Maven Repository" at "https://cacilhas.info/maven"
 libraryDependencies += "info.cacilhas.kodumaro" %% "kodumaro-effects" % "1.0.1"
 ```
 
-Or using Git itself:
+Or using Git itself (Scala 2.12 or other versions):
 
 ```sbt
 lazy val kodumaroEffects = RootProject(uri("https://github.com/cacilhas/effects.git#release/1.0.1"))
@@ -29,7 +29,7 @@ dependsOn(kodumaroEffects)
 
 ## I/O monad
 
-The I/O monad is a wrapper around side-effect blocks that performs them lazily.
+The I/O monad is a wrapper around side-effect blocks to perform’em lazily.
 
 ```scala
 import info.cacilhas.kodumaro.effect._
@@ -44,13 +44,11 @@ object Main extends App {
 A monad returning a value:
 
 ```scala
-val process: IO[Either[Exception, Boolean]] = {
-  try {
-    // Do some side-effect procedure
-    Right(true)
-  } catch {
-    case exc: Exception ⇒ Left(exc)
-  }
+val process: IO[Either[Exception, Boolean]] = try {
+  // Do some side-effect procedure
+  Right(true)
+} catch {
+  case exc: Exception ⇒ Left(exc)
 }
 
 // Run some set up
