@@ -37,7 +37,7 @@ import info.cacilhas.kodumaro.effect._
 object Main extends App {
 
   val hello: IO[Unit] = println("Hello, World!")
-  for (_ ← 1 to 5) hello.perform
+  for (_ <- 1 to 5) hello.perform
 }
 ```
 
@@ -48,7 +48,7 @@ val process: IO[Either[Exception, Boolean]] = try {
   // Do some side-effect procedure
   Right(true)
 } catch {
-  case exc: Exception ⇒ Left(exc)
+  case exc: Exception => Left(exc)
 }
 
 // Run some set up
