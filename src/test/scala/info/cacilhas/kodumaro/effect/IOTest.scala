@@ -44,6 +44,15 @@ class IOTest extends AnyFlatSpec with Matchers {
     sideEffect.get mustBe 2
   }
 
+  "toString" should "return type" in {
+    val io1: IO[Int] = 0
+    val io2: IO[Unit] = ()
+    val io3: IO[String] = ""
+    io1.toString mustEqual "IO(=> int)"
+    io2.toString mustEqual "IO(=> void)"
+    io3.toString mustEqual "IO(=> string)"
+  }
+
   private class Counter {
     private var value = -1
 

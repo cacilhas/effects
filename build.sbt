@@ -1,6 +1,6 @@
 name := "Kodumaro Effects"
 organization := "info.cacilhas.kodumaro"
-version := "1.0.1"
+version := "1.0.2"
 javacOptions ++= Seq("-target", "1.8", "-Xlint")
 scalaVersion := "2.13.0"
 scalacOptions ++= Seq(
