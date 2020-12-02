@@ -1,65 +1,48 @@
 package info.cacilhas.kodumaro.effect
 
-import org.specs2.mutable.Specification
+import java.util.concurrent.atomic.AtomicInteger
 
-class IOTest extends Specification {
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.must.Matchers
 
-  "I/O" >> {
+class IOTest extends AnyFlatSpec with Matchers {
 
-    "perform" >> {
-
-      "Unit I/O" >> {
-        val sideEffect = new MutableIntWrapper(0)
-        val io: IO[Unit] = sideEffect.value += 1
-
-        "it should perform side effect" >> {
-          sideEffect.value must beEqualTo(0)
-          io.perform
-          sideEffect.value must beEqualTo(1)
-          io.perform
-          sideEffect.value must beEqualTo(2)
-        }
-      }
-
-      "Valued I/O" >> {
-        val counter = new Counter
-        val io: IO[Int] = counter()
-
-        "it should update counter" >> {
-          var buf: Int = io
-          buf must beEqualTo(0)
-          buf = io
-          buf must beEqualTo(1)
-          buf = io
-          buf must beEqualTo(2)
-        }
-      }
-    }
-
-    "map" >> {
-      val io: IO[Int] = 12
-      val buf: String = io map {_.toString}
-
-      "it should map to string" >> {
-        buf must beEqualTo("12")
-      }
-    }
-
-    "foreach" >> {
-      val sideEffect = new MutableIntWrapper(0)
-      val io: IO[MutableIntWrapper] = sideEffect
-
-      "it should apply the lambda" >> {
-        sideEffect.value must beEqualTo(0)
-        io foreach {_.value += 1}
-        sideEffect.value must beEqualTo(1)
-        io foreach {_.value += 1}
-        sideEffect.value must beEqualTo(2)
-      }
-    }
+  "Unit I/O perform" should "perform side effect" in {
+    val sideEffect = new AtomicInteger
+    val io: IO[Unit] = sideEffect set (sideEffect.get + 1)
+    sideEffect.get mustBe 0
+    io.perform
+    sideEffect.get mustBe 1
+    io.perform
+    sideEffect.get mustBe 2
   }
 
-  private class MutableIntWrapper(var value: Int)
+  "Valued I/O perform" should "update counter" in {
+    val counter = new Counter
+    val io: IO[Int] = counter()
+    var buf: Int = io
+    buf mustBe 0
+    buf = io
+    buf mustBe 1
+    buf = io
+    buf mustBe 2
+  }
+
+  "Valued I/O map" should "map to string" in {
+    val io: IO[Int] = 12
+    val buf: String = io map {_.toString}
+    buf mustEqual "12"
+  }
+
+  "Value I/O foreach" should "apply the lambda" in {
+    val sideEffect = new AtomicInteger
+    val io: IO[AtomicInteger] = sideEffect
+    sideEffect.get mustBe 0
+    io foreach {e => e set (e.get + 1)}
+    sideEffect.get mustBe 1
+    io foreach {e => e set (e.get + 1)}
+    sideEffect.get mustBe 2
+  }
 
   private class Counter {
     private var value = -1

@@ -6,11 +6,14 @@
 *.iml
 *.jar
 *.versionsBackup
-/project/metals.sbt
-build
+
+project/
+build/
 core
 bin/
 nbproject/
 target/
+
 !.gitignore
 !.gitmodules
+!project/plugins.sbt

@@ -10,24 +10,19 @@ scalacOptions ++= Seq(
   "-language:_",  // enable advanced features
 )
 Test / fork := true
-Test / envVars ++= Map(
-  "TEST" -> "1",
-)
+Test / envVars += "TEST" -> "1"
 bintrayOrganization := Some("kodumaro")
-resolvers += Resolver.jcenterRepo
 licenses += ("BSD 3-Clause", url("https://opensource.org/licenses/BSD-3-Clause"))
-libraryDependencies ++= Seq(
-  "org.specs2" %% "specs2-core" % "4.10.0" % Test,
-)
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.0" % Test
 
 test in assembly := {}
 assemblyMergeStrategy in assembly := {
   case PathList("META-INF", xs @ _*) =>
     xs map {_.toLowerCase} match {
-    case "manifest.mf" :: Nil  |
-         "index.list" :: Nil   |
+    case "manifest.mf"  :: Nil |
+         "index.list"   :: Nil |
          "dependencies" :: Nil => MergeStrategy.discard
-    case _ => MergeStrategy.last
+    case _                     => MergeStrategy.last
     }
   case _ => MergeStrategy.first
 }
